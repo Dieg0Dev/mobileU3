@@ -24,7 +24,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase DB) {
         DB.execSQL("create Table UserDetails(codigo TEXT primary key, nome TEXT, email TEXT, sexo TEXT, " +
-                "rockInRio BOOLEAN, theTown BOOLEAN, lollapalooza BOOLEAN, carnatal BOOLEAN)");
+                "rockInRio TEXT, theTown TEXT, lollapalooza TEXT, carnatal TEXT)");
     }
 
     @Override
@@ -59,11 +59,11 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("codigo", cliente.getCodigo());
         contentValues.put("nome", cliente.getNome());
         contentValues.put("email", cliente.getEmail());
-//        contentValues.put("sexo", cliente.getSexo());
-//        contentValues.put("rockInRio", cliente.getRockInRio());
-//        contentValues.put("theTown", cliente.getTheTown());
-//        contentValues.put("lollapalooza", cliente.getLollapalooza());
-//        contentValues.put("carnatal", cliente.getCarnatal());
+        contentValues.put("sexo", cliente.getSexo());
+        contentValues.put("rockInRio", cliente.getRockInRio());
+        contentValues.put("theTown", cliente.getTheTown());
+        contentValues.put("lollapalooza", cliente.getLollapalooza());
+        contentValues.put("carnatal", cliente.getCarnatal());
         Cursor cursor = DB.rawQuery("Select * from Userdetails where codigo = ?", new String[]{codigoAntigo});
         if (cursor.getCount() > 0) {
             long result = DB.update("Userdetails", contentValues, "codigo=?", new String[]{codigoAntigo});
