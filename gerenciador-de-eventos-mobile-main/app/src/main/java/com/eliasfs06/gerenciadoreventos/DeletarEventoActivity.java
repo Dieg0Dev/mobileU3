@@ -13,7 +13,7 @@ import com.eliasfs06.gerenciadoreventos.db.DBHelper;
 
 public class DeletarEventoActivity extends AppCompatActivity {
 
-    private EditText nomeText;
+    private EditText codigo;
     DBHelper dbHelper;
 
     @Override
@@ -22,7 +22,7 @@ public class DeletarEventoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_deleta_evento);
 
         dbHelper = new DBHelper(this);
-        nomeText = findViewById(R.id.nomeText);
+        codigo = findViewById(R.id.nomeText);
 
         Button btnDeletar = findViewById(R.id.deletarBtn);
         Button btnLimpar = findViewById(R.id.limparBtn);
@@ -51,21 +51,17 @@ public class DeletarEventoActivity extends AppCompatActivity {
     }
 
     private void deletarEvento(){
-        String nome = nomeText.getText().toString();
-
-        Boolean chickinsertdata = dbHelper.deletedata(nome);
-
-        if(chickinsertdata == true) {
-            Toast.makeText(DeletarEventoActivity.this, "Deletou", Toast.LENGTH_SHORT).show();
+        if(dbHelper.verificarClienteExistente(codigo.getText().toString())){
+            dbHelper.deletedata(codigo.getText().toString());
+            Toast.makeText(DeletarEventoActivity.this, "Participante deletado com sucesso.", Toast.LENGTH_SHORT).show();
         } else {
-            Toast.makeText(DeletarEventoActivity.this, "Não Deletou", Toast.LENGTH_SHORT).show();
+            Toast.makeText(DeletarEventoActivity.this, "Não foi encontrado nenhum participante com esse código.", Toast.LENGTH_SHORT).show();
         }
-//        finish();
 
     }
 
     private void limparInput(){
-        nomeText.setText("");
+        codigo.setText("");
     }
 
     private void irParaMenuActivity() {

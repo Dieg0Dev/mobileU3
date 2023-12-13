@@ -93,7 +93,7 @@ public class CadastroClienteActivity extends AppCompatActivity {
             public void onClick(View v) {
 //                RadioButton opcao = findViewById(selecaoSexo.getCheckedRadioButtonId());
 //                Toast.makeText(CadastroClienteActivity.this, opcao.getText(), Toast.LENGTH_SHORT).show();
-                validarEvento();
+                validarCliente();
             }
         });
 
@@ -112,9 +112,9 @@ public class CadastroClienteActivity extends AppCompatActivity {
         });
     }
 
-    private void salvarEvento(String codigo, String nome, String email, String sexo, Boolean rockInRio, Boolean theTown, Boolean lollaPalooza, Boolean carnatal) {
+    private void salvarCliente(String codigo, String nome, String email, String sexo, Boolean rockInRio, Boolean theTown, Boolean lollaPalooza, Boolean carnatal) {
         dbHelper.insertuserdata(new Cliente(codigo, nome, email, sexo, rockInRio, theTown, lollaPalooza, carnatal));
-        showToast("Evento salvo com sucesso!");
+        showToast("Participante salvo com sucesso!");
         limparInput();
     }
 
@@ -128,13 +128,13 @@ public class CadastroClienteActivity extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), mensagem, Toast.LENGTH_SHORT).show();
     }
 
-    public void validarEvento(){
+    public void validarCliente(){
         String codigo = codigoText.getText().toString();
         String nome = nomeText.getText().toString();
         String email = emailText.getText().toString();
 
         if(!codigo.isEmpty() && !nome.isEmpty() && !email.isEmpty()){
-            salvarEvento(codigo, nome, email, sexoText, rockInRio, theTown, lollaPalooza, carnatal);
+            salvarCliente(codigo, nome, email, sexoText, rockInRio, theTown, lollaPalooza, carnatal);
         } else {
             showToast("Preencha todos os campos.");
         }
