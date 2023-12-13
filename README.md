@@ -1,3 +1,3 @@
-Alunos:
-Elias Farias 
-Diego Bruno 
+* Elias Farias
+
+* Diego Bruno
